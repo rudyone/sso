@@ -1,0 +1,1080 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50532
+Source Host           : localhost:3306
+Source Database       : hihsoft-sso
+
+Target Server Type    : MYSQL
+Target Server Version : 50532
+File Encoding         : 65001
+
+Date: 2013-10-12 10:18:10
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `t_acl_dutyuser`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_dutyuser`;
+CREATE TABLE `t_acl_dutyuser` (
+  `DUTYUSERID` varchar(32) NOT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  `DUTYID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`DUTYUSERID`),
+  KEY `FKD334D9E1701456EA` (`DUTYID`),
+  KEY `FKD334D9E1BFA0F9FF` (`USERID`),
+  CONSTRAINT `FKD334D9E1701456EA` FOREIGN KEY (`DUTYID`) REFERENCES `t_sys_duty` (`DUTYID`),
+  CONSTRAINT `FKD334D9E1BFA0F9FF` FOREIGN KEY (`USERID`) REFERENCES `t_acl_userinfo` (`USERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_dutyuser
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_acl_role`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_role`;
+CREATE TABLE `t_acl_role` (
+  `ROLEID` varchar(32) NOT NULL,
+  `REMARK` varchar(100) DEFAULT NULL,
+  `ROLENAME` varchar(40) DEFAULT NULL,
+  `ROLETYPE` varchar(2) DEFAULT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  `ROLE_SORT` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`ROLEID`),
+  KEY `FKECFDB6B656CBCFE0` (`ORGID`),
+  CONSTRAINT `FKECFDB6B656CBCFE0` FOREIGN KEY (`ORGID`) REFERENCES `t_sys_org` (`ORGID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_role
+-- ----------------------------
+INSERT INTO `t_acl_role` VALUES ('40288a0d41a7978f0141a797ccec010a', '拥有系统所有权限', '开发管理员角色', '1', '40288a0d41a7978f0141a797b2fb0030', '1');
+
+-- ----------------------------
+-- Table structure for `t_acl_roleprivilege`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_roleprivilege`;
+CREATE TABLE `t_acl_roleprivilege` (
+  `RID` varchar(32) NOT NULL,
+  `MODULEID` varchar(32) DEFAULT NULL,
+  `OPERATEID` varchar(32) DEFAULT NULL,
+  `ROLEID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`RID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_roleprivilege
+-- ----------------------------
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797ccfc010b', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797b9b20079', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cd4a010f', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797cd2a010e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cda70111', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797cd690110', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797ce440114', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797ce240113', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797ce630116', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797ce440115', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797ceff011f', '40288a0d41a7978f0141a797b107001d', '40288a0d41a7978f0141a797cef0011e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cf1e0121', '40288a0d41a7978f0141a797b107001d', '40288a0d41a7978f0141a797cf0f0120', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cf3e0122', '40288a0d41a7978f0141a797b107001d', '40288a0d41a7978f0141a797b117001e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cf4d0123', '40288a0d41a7978f0141a797b107001d', '40288a0d41a7978f0141a797b7600063', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797cf9b0128', '40288a0d41a7978f0141a797b00d000f', '40288a0d41a7978f0141a797cf8c0127', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d0d40139', '40288a0d41a7978f0141a797b00d000f', '40288a0d41a7978f0141a797c94200e2', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d103013c', '40288a0d41a7978f0141a797b00d000f', '40288a0d41a7978f0141a797d0f3013b', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d112013d', '40288a0d41a7978f0141a797bed3009a', '40288a0d41a7978f0141a797cc6f0104', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d141013f', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797d122013e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d1610140', '40288a0d41a7978f0141a797bed3009a', '40288a0d41a7978f0141a797cfda012b', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d1700141', '40288a0d41a7978f0141a797bed3009a', '40288a0d41a7978f0141a797cff9012d', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d1800142', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797cd1b010d', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d1ce0143', '40288a0d41a7978f0141a797bed3009a', '40288a0d41a7978f0141a797c4be00be', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d21c0145', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797d0a50137', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d24b0147', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797d22c0146', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d393014d', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797b3c60038', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d3d2014e', '40288a0d41a7978f0141a797b6b4005b', '40288a0d41a7978f0141a797b6c4005c', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d47d0152', '40288a0d41a7978f0141a797b6b4005b', '40288a0d41a7978f0141a797d45e0151', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d48d0153', '40288a0d41a7978f0141a797b6b4005b', '40288a0d41a7978f0141a797c54b00c5', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d49d0154', '40288a0d41a7978f0141a797b6b4005b', '40288a0d41a7978f0141a797c4fd00c0', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d4cc0156', '40288a0d41a7978f0141a797c8e500dc', '40288a0d41a7978f0141a797d4bc0155', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d4fa0159', '40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797d4eb0158', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d549015c', '40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797d51a015b', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d568015d', '40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797cc1100ff', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797d577015e', '40288a0d41a7978f0141a797c8e500dc', '40288a0d41a7978f0141a797d2f7014a', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e02601e2', '40288a0d41a7978f0141a797b1460020', '40288a0d41a7978f0141a797b405003b', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e03501e3', '40288a0d41a7978f0141a797b1460020', '40288a0d41a7978f0141a797b1550021', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e05501e4', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797dd9601bd', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e06401e5', '40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797b6180056', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e08401e7', '40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797d902018e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e0a301e9', '40288a0d41a7978f0141a797af710008', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e0c201eb', '40288a0d41a7978f0141a797b0c9001a', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e0e101ec', '40288a0d41a7978f0141a797c8e500dc', '40288a0d41a7978f0141a797c8e500dd', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e10101ed', '40288a0d41a7978f0141a797b0f8001c', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e27801f7', '40288a0d41a7978f0141a797af900009', '40288a0d41a7978f0141a797b2300029', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e28701f8', '40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797de4101c6', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e2c601fa', '40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797d6620168', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e30401fc', '40288a0d41a7978f0141a797d27a0148', '40288a0d41a7978f0141a797d2b80149', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e31401fd', '40288a0d41a7978f0141a797bba6008d', '40288a0d41a7978f0141a797bbb6008e', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e3c001ff', '40288a0d41a7978f0141a797bba6008d', '40288a0d41a7978f0141a797d7e8017d', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e3cf0200', '40288a0d41a7978f0141a797b0e8001b', '40288a0d41a7978f0141a797e1db01f2', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e40e0203', '40288a0d41a7978f0141a797b0e8001b', '40288a0d41a7978f0141a797e3fe0202', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e42d0205', '40288a0d41a7978f0141a797d27a0148', '40288a0d41a7978f0141a797d902018d', '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e4aa020d', '40288a0d41a7978f0141a797d355014c', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e4f80210', '40288a0d41a7978f0141a797dd8601bc', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5170211', '40288a0d41a7978f0141a797af520007', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5370212', '40288a0d41a7978f0141a797af330006', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5560213', '40288a0d41a7978f0141a797cbf200fd', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5660215', '40288a0d41a7978f0141a797e5660214', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5850217', '40288a0d41a7978f0141a797e2e501fb', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5b40219', '40288a0d41a7978f0141a797da3a0199', null, '40288a0d41a7978f0141a797ccec010a');
+INSERT INTO `t_acl_roleprivilege` VALUES ('40288a0d41a7978f0141a797e5d3021b', '40288a0d41a7978f0141a797b2ec002f', null, '40288a0d41a7978f0141a797ccec010a');
+
+-- ----------------------------
+-- Table structure for `t_acl_roleuser`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_roleuser`;
+CREATE TABLE `t_acl_roleuser` (
+  `ROLEUSERID` varchar(32) NOT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  `ROLEID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`ROLEUSERID`),
+  KEY `FK355F4F81A9888D67` (`ROLEID`),
+  KEY `FK355F4F81BFA0F9FF` (`USERID`),
+  CONSTRAINT `FK355F4F81A9888D67` FOREIGN KEY (`ROLEID`) REFERENCES `t_acl_role` (`ROLEID`),
+  CONSTRAINT `FK355F4F81BFA0F9FF` FOREIGN KEY (`USERID`) REFERENCES `t_acl_userinfo` (`USERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_roleuser
+-- ----------------------------
+INSERT INTO `t_acl_roleuser` VALUES ('40288a0d41a7978f0141a797dede01ce', '40288a0d41a7978f0141a797c04a00a0', '40288a0d41a7978f0141a797ccec010a');
+
+-- ----------------------------
+-- Table structure for `t_acl_userinfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_userinfo`;
+CREATE TABLE `t_acl_userinfo` (
+  `USERID` varchar(32) NOT NULL,
+  `BIRTHDAY` varchar(4) DEFAULT NULL,
+  `CERTIFIED` varchar(20) DEFAULT NULL,
+  `CITY` longtext,
+  `USER_EMAIL` varchar(100) DEFAULT NULL,
+  `IDCARD` varchar(18) DEFAULT NULL,
+  `IMAGEPATH` varchar(100) DEFAULT NULL,
+  `ISONLINE` varchar(6) DEFAULT NULL,
+  `LOGINNAME` varchar(20) DEFAULT NULL,
+  `MOBILE` varchar(12) DEFAULT NULL,
+  `MSN` varchar(100) DEFAULT NULL,
+  `NICKNAME` varchar(20) DEFAULT NULL,
+  `PROVINCE` longtext,
+  `QQ` varchar(20) DEFAULT NULL,
+  `SEX` varchar(1) DEFAULT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  `DEPTID` varchar(32) DEFAULT NULL,
+  `TELEPHONE` varchar(30) DEFAULT NULL,
+  `USERDESC` varchar(60) DEFAULT NULL,
+  `USERNAME` varchar(30) DEFAULT NULL,
+  `USERPW` varchar(50) DEFAULT NULL,
+  `USERSTATE` varchar(6) DEFAULT NULL,
+  `USERTYPE` varchar(2) DEFAULT NULL,
+  `WORK` varchar(30) DEFAULT NULL,
+  `TRADE` varchar(50) DEFAULT NULL,
+  `AGE` varchar(2) DEFAULT NULL,
+  `USER_NO` varchar(20) DEFAULT NULL,
+  `OFFICE_ADDR` varchar(100) DEFAULT NULL,
+  `MODIFY_TIME` varchar(20) DEFAULT NULL,
+  `FAX` varchar(50) DEFAULT NULL,
+  `SUPERADMIN` varchar(10) DEFAULT NULL,
+  `DUTYID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`USERID`),
+  KEY `FK355B8139701456EA` (`DUTYID`),
+  KEY `FK355B813956CBCFE0` (`ORGID`),
+  CONSTRAINT `FK355B813956CBCFE0` FOREIGN KEY (`ORGID`) REFERENCES `t_sys_org` (`ORGID`),
+  CONSTRAINT `FK355B8139701456EA` FOREIGN KEY (`DUTYID`) REFERENCES `t_sys_duty` (`DUTYID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_userinfo
+-- ----------------------------
+INSERT INTO `t_acl_userinfo` VALUES ('40288a0d41a7978f0141a797c04a00a0', null, null, null, null, null, null, null, 'devadmin', null, null, null, null, null, null, '40288a0d41a7978f0141a797b2fb0030', '40288a0d41a7978f0141a797b2fb0030', null, null, '开发管理员', 'e05b2b33585496f07866dde84e17449f', '1', '4', null, null, null, null, null, null, null, 'devadmin', null);
+
+-- ----------------------------
+-- Table structure for `t_acl_userprivilege`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_acl_userprivilege`;
+CREATE TABLE `t_acl_userprivilege` (
+  `USERPRVIID` varchar(32) NOT NULL,
+  `MODULEID` varchar(32) DEFAULT NULL,
+  `OPERATEID` varchar(32) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`USERPRVIID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_acl_userprivilege
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_audit`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_audit`;
+CREATE TABLE `t_log_audit` (
+  `ADUITID` varchar(32) NOT NULL,
+  `OID` varchar(32) DEFAULT NULL,
+  `BEHIND_DATA` longtext,
+  `FRONT_DATA` longtext,
+  `CREATE_USER` varchar(32) DEFAULT NULL,
+  `CREATE_TIME` varchar(30) DEFAULT NULL,
+  `MODIFY_MAN` varchar(32) DEFAULT NULL,
+  `MODIFY_TIME` varchar(30) DEFAULT NULL,
+  `PROPERTY` longtext,
+  `OPERATION_TYPE` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ADUITID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_audit
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_businesslog`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_businesslog`;
+CREATE TABLE `t_log_businesslog` (
+  `LOGID` varchar(32) NOT NULL,
+  `CREATE_DATE` varchar(30) DEFAULT NULL,
+  `CUSTIP` varchar(15) DEFAULT NULL,
+  `MODULEID` varchar(32) DEFAULT NULL,
+  `OPERATEID` varchar(32) DEFAULT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`LOGID`),
+  KEY `FK58117CDE8A2F4CF4` (`OPERATEID`),
+  KEY `FK58117CDE56CBCFE0` (`ORGID`),
+  KEY `FK58117CDEFEFE904` (`MODULEID`),
+  KEY `FK58117CDEBFA0F9FF` (`USERID`),
+  CONSTRAINT `FK58117CDE56CBCFE0` FOREIGN KEY (`ORGID`) REFERENCES `t_sys_org` (`ORGID`),
+  CONSTRAINT `FK58117CDE8A2F4CF4` FOREIGN KEY (`OPERATEID`) REFERENCES `t_sys_moduleoperate` (`OPERATEID`),
+  CONSTRAINT `FK58117CDEBFA0F9FF` FOREIGN KEY (`USERID`) REFERENCES `t_acl_userinfo` (`USERID`),
+  CONSTRAINT `FK58117CDEFEFE904` FOREIGN KEY (`MODULEID`) REFERENCES `t_sys_moduleinfo` (`MODULEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_businesslog
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_dbsql`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_dbsql`;
+CREATE TABLE `t_log_dbsql` (
+  `DATABASE_OID` varchar(32) NOT NULL,
+  `TABLE_NAME` varchar(100) DEFAULT NULL,
+  `TABLE_OPERATE` varchar(60) DEFAULT NULL,
+  `TABLE_ACCESS_TIMES` varchar(30) DEFAULT NULL,
+  `TABLE_ACCESS_LAST_TIME` varchar(30) DEFAULT NULL,
+  `COLUMES` varchar(2) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`DATABASE_OID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_dbsql
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_loginlog`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_loginlog`;
+CREATE TABLE `t_log_loginlog` (
+  `LOGID` varchar(32) NOT NULL,
+  `IPADDR` varchar(30) DEFAULT NULL,
+  `LOGINTIME` varchar(30) DEFAULT NULL,
+  `LOGOUTTIME` varchar(30) DEFAULT NULL,
+  `ONLINETIME` varchar(20) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  `LOGOUT` varchar(2) DEFAULT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`LOGID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_loginlog
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_servicecall`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_servicecall`;
+CREATE TABLE `t_log_servicecall` (
+  `CALLID` varchar(32) NOT NULL,
+  `SERVICE_CLASS` varchar(200) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  `METHOD_NAME` varchar(100) DEFAULT NULL,
+  `CONSUME_TIME` varchar(30) DEFAULT NULL,
+  `Call_TIME` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`CALLID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_servicecall
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_log_sysexception`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log_sysexception`;
+CREATE TABLE `t_log_sysexception` (
+  `EXCEPTION_OID` varchar(32) NOT NULL,
+  `EXCEPTION_TIMES` varchar(100) DEFAULT NULL,
+  `EXCEPTION_LASTTIME` varchar(30) DEFAULT NULL,
+  `EXCEPTION_NAME` varchar(200) DEFAULT NULL,
+  `EXCEPTION_MSG` longtext,
+  `EXCEPTION_CLASS` longtext,
+  `USERID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`EXCEPTION_OID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_log_sysexception
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_sys_areacoding`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_areacoding`;
+CREATE TABLE `t_sys_areacoding` (
+  `AREACODINGID` varchar(32) NOT NULL,
+  `AREACODE` varchar(6) DEFAULT NULL,
+  `AREANAME` varchar(40) DEFAULT NULL,
+  `AREATYPE` varchar(2) DEFAULT NULL,
+  `PARENTAREA` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`AREACODINGID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_areacoding
+-- ----------------------------
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ad7d0000', '430000', '湖南省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797adea0001', '630000', '青海省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797adfa0002', '632300', '黄南藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ae0a0003', '410000', '河南省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ae480004', '410900', '濮阳市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797afa0000a', '410100', '郑州市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797afbf000b', '320000', '江苏省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797afcf000c', '320100', '南京市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797afde000d', '530000', '云南省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797affe000e', '530100', '昆明市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b02d0011', '650000', '新疆维吾尔自治区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b03c0012', '652100', '吐鲁番地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b04c0013', '510000', '四川省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b05b0014', '511800', '雅安市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b09a0017', '360000', '江西省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b0aa0018', '360600', '鹰潭市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b0b90019', '511700', '达州市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b127001f', '652200', '哈密地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1750022', '652900', '阿克苏地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1840023', '360400', '九江市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1a40024', '370000', '山东省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1b30025', '371300', '临沂市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1c30026', '440000', '广东省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b1e20027', '441500', '汕尾市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b2010028', '652300', '昌吉回族自治州', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b24f002a', '433100', '湘西土家族苗族自治州', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b29e002b', '520000', '贵州省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b2ad002c', '520200', '六盘水市', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b2cc002d', '530900', '临沧市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b2dc002e', '654000', '伊犁哈萨克自治州', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b32a0031', '620000', '甘肃省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b33a0032', '621000', '庆阳市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3490033', '370300', '淄博市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3590034', '420000', '湖北省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3780035', '420700', '鄂州市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3a70036', '410500', '安阳市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3e60039', '340000', '安徽省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b3f5003a', '341100', '滁州市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b415003c', '520400', '安顺市', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b424003d', '350000', '福建省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b434003e', '350300', '莆田市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b4820042', '370700', '潍坊市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b4920043', '350200', '厦门市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b4c00046', '431100', '永州市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b51e004a', '411500', '信阳市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b52e004b', '320800', '淮安市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b53d004c', '350700', '南平市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b54d004d', '652700', '博尔塔拉蒙古自治州', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b56c004e', '320900', '盐城市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b57c004f', '621200', '陇南市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b58c0050', '430100', '长沙市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b59b0051', '450000', '广西壮族自治区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b5ba0053', '150000', '内蒙古自治区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b5da0054', '150200', '包头市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6090055', '150100', '呼和浩特市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6280057', '150300', '乌海市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6660058', '150400', '赤峰市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6860059', '230000', '黑龙江省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6a5005a', '231100', '黑河市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6d4005d', '430900', '益阳市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b6e3005e', '230600', '大庆市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b703005f', '230700', '伊春市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7120060', '231200', '绥化市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7310061', '512000', '资阳市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7510062', '150800', '巴彦淖尔市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7800064', '430500', '邵阳市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b79f0065', '360500', '新余市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7ce0066', '522200', '铜仁地区', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b7dd0067', '150700', '呼伦贝尔市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b80c0068', '533400', '迪庆藏族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b87a006b', '150500', '通辽市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b889006c', '330000', '浙江省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b8a8006d', '330900', '舟山市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b8b8006e', '150600', '鄂尔多斯市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b8c8006f', '330800', '衢州市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b8f70070', '533300', '怒江傈僳族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9060071', '530800', '普洱市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9250072', '441600', '河源市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9350073', '653000', '克孜勒苏柯尔克孜自治州', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9450074', '130000', '河北省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9640075', '131000', '廊坊市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9830076', '220000', '吉林省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9930077', '220200', '吉林市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797b9c2007a', '370200', '青岛市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ba00007b', '653100', '喀什地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ba7d007d', '220300', '四平市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ba9c007e', '140000', '山西省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797baac007f', '141000', '临汾市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797babc0080', '520100', '贵阳市', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797badb0081', '445100', '潮州市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797baeb0082', '131100', '衡水市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb0a0084', '445300', '云浮市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb290086', '340200', '芜湖市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb390087', '441400', '梅州市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb480088', '340300', '蚌埠市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb580089', '370400', '枣庄市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb68008a', '340600', '淮北市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb77008b', '340700', '铜陵市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bb96008c', '370800', '济宁市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bbc5008f', '350600', '漳州市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bbd50090', '620300', '金昌市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bc710091', '130400', '邯郸市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bc900092', '350800', '龙岩市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bcb00093', '540000', '西藏自治区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bcee0095', '370600', '烟台市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797be170096', '422800', '恩施土家族苗族自治州', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797be460097', '520300', '遵义市', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797be750098', '140200', '大同市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bea40099', '110000', '北京市', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bf7e009c', '640000', '宁夏回族自治区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bfad009d', '640400', '固原市', '2', '40288a0d41a7978f0141a797bf7e009c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797bfcd009e', '640500', '中卫市', '2', '40288a0d41a7978f0141a797bf7e009c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c00b009f', '430800', '张家界市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c11500a5', '522300', '黔西南布依族苗族自治州', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c14400a8', '430600', '岳阳市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c16300aa', '511500', '宜宾市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c1a100ad', '511600', '广安市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c1e000af', '640300', '吴忠市', '2', '40288a0d41a7978f0141a797bf7e009c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c1ef00b0', '421100', '黄冈市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c22e00b1', '410200', '开封市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c26c00b2', '511900', '巴中市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c2bb00b3', '320300', '徐州市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c2e900b4', '610000', '陕西省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c30900b5', '610800', '榆林市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c32800b6', '320200', '无锡市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c34700b7', '530300', '曲靖市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c38600b8', '640200', '石嘴山市', '2', '40288a0d41a7978f0141a797bf7e009c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c3b500b9', '152500', '锡林郭勒盟', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c41200ba', '610900', '安康市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c45100bb', '610700', '汉中市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c48000bc', '451100', '贺州市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c49f00bd', '630100', '西宁市', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c4dd00bf', '140100', '太原市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c51c00c2', '350900', '宁德市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c53b00c4', '330100', '杭州市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c55a00c6', '410300', '洛阳市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c58900c7', '540100', '拉萨市', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c5b800c8', '431300', '娄底市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c5d700c9', '450800', '贵港市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c60600ca', '440300', '深圳市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c63500cb', '370500', '东营市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c67400cc', '140900', '忻州市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c6e100cd', '350100', '福州市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c71000ce', '320700', '连云港市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c75e00cf', '654200', '塔城地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c79d00d0', '511100', '乐山市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c7fa00d1', '140800', '运城市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c80a00d2', '450600', '防城港市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c83900d4', '411700', '驻马店市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c84800d5', '140700', '晋中市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c86800d6', '511000', '内江市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c88700d8', '321300', '宿迁市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c8b600da', '320600', '南通市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c8c500db', '530700', '丽江市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c90400de', '510100', '成都市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c91400df', '430700', '常德市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c92300e0', '321100', '镇江市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c93300e1', '810000', '香港特别行政区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c95200e3', '421200', '咸宁市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c97100e4', '421000', '荆州市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797c9a000e5', '650200', '克拉玛依市', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ca2d00e7', '542200', '山南地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ca7b00e8', '621100', '定西市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ca8b00e9', '431200', '怀化市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ca9a00ea', '640100', '银川市', '2', '40288a0d41a7978f0141a797bf7e009c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797caaa00eb', '410400', '平顶山市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cad900ee', '411400', '商丘市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797caf800ef', '431000', '郴州市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb0800f0', '542100', '昌都地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb1700f1', '210000', '辽宁省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb2700f2', '210300', '鞍山市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb3600f3', '340500', '马鞍山市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb4600f4', '340400', '淮南市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb8500f7', '210200', '大连市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cb9400f8', '341000', '黄山市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cba400f9', '623000', '甘南藏族自治州', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cbb300fa', '411600', '周口市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cbc300fb', '321200', '泰州市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cbe200fc', '411200', '三门峡市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc0200fe', '511400', '眉山市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc210100', '542300', '日喀则地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc400102', '450700', '钦州市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc5f0103', '320400', '常州市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc7f0105', '513300', '甘孜藏族自治州', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cc8e0106', '220800', '白城市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ccad0107', '320500', '苏州市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ccbd0108', '511300', '南充市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ccdc0109', '450300', '桂林市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cd0b010c', '411100', '漯河市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ce150112', '451300', '来宾市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ce730117', '411000', '许昌市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ce820118', '440500', '汕头市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ce920119', '440900', '茂名市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cec1011b', '632800', '海西蒙古族藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cf5d0124', '310000', '上海市', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cf6d0125', '340100', '合肥市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cf7c0126', '141100', '吕梁市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cfab0129', '341800', '宣城市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cfca012a', '510800', '广元市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797cfea012c', '220400', '辽源市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d009012e', '341600', '亳州市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d018012f', '220500', '通化市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0380131', '441900', '东莞市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0670133', '152200', '兴安盟', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0760134', '420300', '十堰市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0860135', '440100', '广州市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0950136', '622900', '临夏回族自治州', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0b50138', '330700', '金华市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d0e4013a', '530500', '保山市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d1ed0144', '360900', '宜春市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d335014b', '421300', '随州市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d410014f', '330200', '宁波市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d4200150', '510700', '绵阳市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d4db0157', '510300', '自贡市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d51a015a', '330300', '温州市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d5c6015f', '440600', '佛山市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d5e50160', '451200', '河池市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d5f40161', '654300', '阿勒泰地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6040162', '450200', '柳州市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6140163', '450400', '梧州市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6230164', '451400', '崇左市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6330165', '450900', '玉林市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6430166', '440400', '珠海市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6520167', '611000', '商洛市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6810169', '820000', '澳门特别行政区', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d691016a', '440800', '湛江市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6a0016b', '341700', '池州市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6b0016c', '210100', '沈阳市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6c0016d', '429021', '神农架林区', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6cf016e', '441800', '清远市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d6fe0170', '510900', '遂宁市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d70e0171', '360800', '吉安市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d71d0172', '522700', '黔南布依族苗族自治州', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d72d0173', '210900', '阜新市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d75c0175', '610500', '渭南市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d76b0176', '451000', '百色市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d77b0177', '210800', '营口市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d78b0178', '522600', '黔东南苗族侗族自治州', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d79a0179', '530600', '昭通市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d7ba017a', '530400', '玉溪市', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d7f8017e', '440200', '韶关市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d808017f', '442000', '中山市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8170180', '441200', '肇庆市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8850186', '230300', '鸡西市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8940187', '522400', '毕节地区', '2', '40288a0d41a7978f0141a797b29e002b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8b40189', '230200', '齐齐哈尔市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8c3018a', '210400', '抚顺市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8d3018b', '360100', '南昌市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d8e2018c', '210500', '本溪市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d931018f', '610400', '咸阳市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d9500190', '130700', '张家口市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d97f0191', '211300', '朝阳市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d9ae0192', '140300', '阳泉市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d9bd0193', '450500', '北海市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d9cd0194', '211000', '辽阳市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797d9ec0195', '430200', '株洲市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da0b0196', '140400', '长治市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da1b0197', '211400', '葫芦岛市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da2b0198', '130800', '承德市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da4a019a', '610300', '宝鸡市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da88019c', '211200', '铁岭市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797da98019d', '620200', '嘉峪关市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797daa8019e', '350400', '三明市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dac7019f', '130200', '唐山市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dad601a0', '140500', '晋城市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db0501a2', '130500', '邢台市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db0501a3', '440700', '江门市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db4401a5', '370900', '泰安市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db5301a6', '610100', '西安市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db8201a7', '130600', '保定市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797db8201a8', '340800', '安庆市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dba201a9', '610200', '铜川市', '2', '40288a0d41a7978f0141a797c2e900b4');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dbc101aa', '430400', '衡阳市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dbd001ab', '620100', '兰州市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dbe001ac', '632600', '果洛藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dbff01ad', '350500', '泉州市', '2', '40288a0d41a7978f0141a797b424003d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc0f01ae', '140600', '朔州市', '2', '40288a0d41a7978f0141a797ba9c007e');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc2e01af', '211100', '盘锦市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc3e01b0', '420800', '荆门市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc4d01b1', '410700', '新乡市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc6d01b2', '371000', '威海市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc6d01b3', '445200', '揭阳市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dc8c01b4', '130900', '沧州市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dcab01b5', '370100', '济南市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dcbb01b6', '653200', '和田地区', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dcca01b7', '450100', '南宁市', '2', '40288a0d41a7978f0141a797b59b0051');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dcf901b8', '220700', '松原市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dd1901b9', '420100', '武汉市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dd3801ba', '371200', '莱芜市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dd4701bb', '441700', '阳江市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dda501be', '220600', '白山市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ddb501bf', '710000', '台湾省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ddd401c0', '330500', '湖州市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797ddf301c1', '330400', '嘉兴市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de0301c2', '331100', '丽水市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de1301c3', '341300', '宿州市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de3201c5', '152900', '阿拉善盟', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de6101c7', '360700', '赣州市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de7001c8', '620900', '酒泉市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de8001c9', '620800', '平凉市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de9001ca', '460000', '海南省', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797de9f01cb', '460200', '三亚市', '2', '40288a0d41a7978f0141a797de9001ca');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797deaf01cc', '230800', '佳木斯市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797debe01cd', '620500', '天水市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797deed01cf', '441300', '惠州市', '2', '40288a0d41a7978f0141a797b1c30026');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797deed01d0', '620400', '白银市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df1c01d2', '420500', '宜昌市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df2c01d3', '321000', '扬州市', '2', '40288a0d41a7978f0141a797afbf000b');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df5b01d5', '632100', '海东地区', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df7a01d7', '620600', '武威市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df8a01d8', '361000', '抚州市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797df9901d9', '150900', '乌兰察布市', '2', '40288a0d41a7978f0141a797b5ba0053');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dfa901da', '620700', '张掖市', '2', '40288a0d41a7978f0141a797b32a0031');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dfc801dc', '429006', '天门市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dfd801dd', '429005', '潜江市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dfe701de', '510500', '泸州市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797dff701df', '429004', '仙桃市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e00701e0', '430300', '湘潭市', '2', '40288a0d41a7978f0141a797ad7d0000');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e01601e1', '632500', '海南藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e07401e6', '652800', '巴音郭楞蒙古自治州', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e09301e8', '130100', '石家庄市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e0b201ea', '542600', '林芝地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e13f01ee', '542400', '那曲地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e16e01ef', '130300', '秦皇岛市', '2', '40288a0d41a7978f0141a797b9450074');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e17e01f0', '513200', '阿坝藏族羌族自治州', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e1ac01f1', '632700', '玉树藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e21a01f3', '542500', '阿里地区', '2', '40288a0d41a7978f0141a797bcb00093');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e24901f4', '231000', '牡丹江市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e25801f5', '410600', '鹤壁市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e26801f6', '371700', '菏泽市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e29701f9', '420900', '孝感市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e34301fe', '331000', '台州市', '2', '40288a0d41a7978f0141a797b889006c');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e3df0201', '371600', '滨州市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e42d0204', '341500', '六安市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e44c0206', '371500', '聊城市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e45c0207', '371400', '德州市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e45c0208', '513400', '凉山彝族自治州', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e46c0209', '371100', '日照市', '2', '40288a0d41a7978f0141a797b1a40024');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e48b020a', '410800', '焦作市', '2', '40288a0d41a7978f0141a797ae0a0003');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e48b020b', '120000', '天津市', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e4aa020c', '210700', '锦州市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e4ba020e', '360300', '萍乡市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e4e9020f', '532500', '红河哈尼族彝族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e5750216', '360200', '景德镇市', '2', '40288a0d41a7978f0141a797b09a0017');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e5940218', '341400', '巢湖市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e5b4021a', '210600', '丹东市', '2', '40288a0d41a7978f0141a797cb1700f1');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e5e3021c', '341200', '阜阳市', '2', '40288a0d41a7978f0141a797b3e60039');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e611021d', '230100', '哈尔滨市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e640021e', '533100', '德宏傣族景颇族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e640021f', '650100', '乌鲁木齐市', '2', '40288a0d41a7978f0141a797b02d0011');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e67f0220', '420200', '黄石市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e6bd0223', '230400', '鹤岗市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e6ec0225', '510600', '德阳市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e6fc0226', '500000', '重庆市', '1', null);
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e70b0227', '220100', '长春市', '2', '40288a0d41a7978f0141a797b9830076');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e71b0228', '532300', '楚雄彝族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e798022a', '420600', '襄樊市', '2', '40288a0d41a7978f0141a797b3590034');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e7e6022e', '230500', '双鸭山市', '2', '40288a0d41a7978f0141a797b6860059');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e7f6022f', '632200', '海北藏族自治州', '2', '40288a0d41a7978f0141a797adea0001');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e8150230', '532900', '大理白族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e8150231', '510400', '攀枝花市', '2', '40288a0d41a7978f0141a797b04c0013');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e8340232', '532800', '西双版纳傣族自治州', '2', '40288a0d41a7978f0141a797afde000d');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e8440233', '460100', '海口市', '2', '40288a0d41a7978f0141a797de9001ca');
+INSERT INTO `t_sys_areacoding` VALUES ('40288a0d41a7978f0141a797e8540234', '230900', '七台河市', '2', '40288a0d41a7978f0141a797b6860059');
+
+-- ----------------------------
+-- Table structure for `t_sys_codebuilder`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_codebuilder`;
+CREATE TABLE `t_sys_codebuilder` (
+  `CODEID` varchar(32) NOT NULL,
+  `PRI` varchar(10) DEFAULT NULL,
+  `TABLENAME` varchar(100) DEFAULT NULL,
+  `FIELDS` varchar(50) DEFAULT NULL,
+  `QUERYCONDITION` varchar(10) DEFAULT NULL,
+  `FILL` varchar(10) DEFAULT NULL,
+  `DESCRIPT` varchar(200) DEFAULT NULL,
+  `CONTROL` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`CODEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_codebuilder
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_sys_dataprivilege`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_dataprivilege`;
+CREATE TABLE `t_sys_dataprivilege` (
+  `DATAID` varchar(32) NOT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`DATAID`),
+  KEY `FK6CF17CEA56CBCFE0` (`ORGID`),
+  KEY `FK6CF17CEABFA0F9FF` (`USERID`),
+  CONSTRAINT `FK6CF17CEA56CBCFE0` FOREIGN KEY (`ORGID`) REFERENCES `t_sys_org` (`ORGID`),
+  CONSTRAINT `FK6CF17CEABFA0F9FF` FOREIGN KEY (`USERID`) REFERENCES `t_acl_userinfo` (`USERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_dataprivilege
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_sys_duty`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_duty`;
+CREATE TABLE `t_sys_duty` (
+  `DUTYID` varchar(32) NOT NULL,
+  `DUTYNAME` varchar(80) DEFAULT NULL,
+  `REMARK` varchar(200) DEFAULT NULL,
+  `PARENT_DUTYID` varchar(32) DEFAULT NULL,
+  `DUTY_TYPE` varchar(2) DEFAULT NULL,
+  `DUTY_SORT` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`DUTYID`),
+  KEY `FKD2879CB3CB68181F` (`PARENT_DUTYID`),
+  CONSTRAINT `FKD2879CB3CB68181F` FOREIGN KEY (`PARENT_DUTYID`) REFERENCES `t_sys_duty` (`DUTYID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_duty
+-- ----------------------------
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797bcdf0094', '集团主席秘书', '集团主席秘书', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797bf11009b', '集团总经理', '集团总经理', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797c9bf00e6', '集团主席', '集团主席', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797d73d0174', '集团行政总监', '集团行政总监', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797d8750185', '集团业务总监', '集团业务总监', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797df3b01d4', '集团财务总监', '集团财务总监', null, null, null);
+INSERT INTO `t_sys_duty` VALUES ('40288a0d41a7978f0141a797e69e0221', '集团信息总监', '集团信息总监', null, null, null);
+
+-- ----------------------------
+-- Table structure for `t_sys_flat`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_flat`;
+CREATE TABLE `t_sys_flat` (
+  `FLATID` varchar(32) NOT NULL,
+  `FLATCODE` varchar(10) DEFAULT NULL,
+  `REMARK` varchar(100) DEFAULT NULL,
+  `FLATURL` varchar(100) DEFAULT NULL,
+  `SHORTNAME` varchar(10) DEFAULT NULL,
+  `FLATDESC` int(11) DEFAULT NULL,
+  `FLATNAME` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`FLATID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_flat
+-- ----------------------------
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797ae670005', 'SSO', null, 'http://localhost:9081/sso', '基础平台', '1', '统一用户管理系统');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797b5ab0052', 'CMS', null, 'http://localhost:9081/client', '客戶关系', '6', '客戶关系子系统');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797ba2f007c', 'purchase', null, 'http://localhost:9081/purchase', '采购', '2', '采购子系统');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797c13400a7', 'OA', null, 'http://localhost:9081/oa', null, '7', '办公自动化');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797c87700d7', 'finance', null, 'http://localhost:9081/finance', '财务', '5', '财务子系统');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797dae601a1', 'stock', null, 'http://localhost:9081/stock', '库存', '4', '库存子系统');
+INSERT INTO `t_sys_flat` VALUES ('40288a0d41a7978f0141a797db2501a4', 'sales', null, 'http://localhost:9081/sales', '销售', '3', '销售子系统');
+
+-- ----------------------------
+-- Table structure for `t_sys_moduleinfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_moduleinfo`;
+CREATE TABLE `t_sys_moduleinfo` (
+  `MODULEID` varchar(32) NOT NULL,
+  `FLATID` varchar(32) DEFAULT NULL,
+  `LINKEDADDR` varchar(100) DEFAULT NULL,
+  `MODULECLASS` varchar(2) DEFAULT NULL,
+  `MODULEDESC` varchar(50) DEFAULT NULL,
+  `MODULEICON` varchar(100) DEFAULT NULL,
+  `MODULENAME` varchar(80) DEFAULT NULL,
+  `MODULENO` varchar(50) DEFAULT NULL,
+  `PARENTMODULEID` varchar(32) DEFAULT NULL,
+  `SORTNUM` varchar(10) DEFAULT NULL,
+  `LEAF` varchar(2) DEFAULT NULL,
+  `TABSORT` varchar(10) DEFAULT NULL,
+  `MODULEAREA` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`MODULEID`),
+  KEY `FK2B4BB1379284A7AE` (`PARENTMODULEID`),
+  KEY `FK2B4BB13772F74370` (`FLATID`),
+  CONSTRAINT `FK2B4BB13772F74370` FOREIGN KEY (`FLATID`) REFERENCES `t_sys_flat` (`FLATID`),
+  CONSTRAINT `FK2B4BB1379284A7AE` FOREIGN KEY (`PARENTMODULEID`) REFERENCES `t_sys_moduleinfo` (`MODULEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_moduleinfo
+-- ----------------------------
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797af330006', '40288a0d41a7978f0141a797ae670005', null, '1', null, 'icon-database', 'UI组件库', '', null, '3', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797af520007', '40288a0d41a7978f0141a797ae670005', 'uiGridTreeDemoController.do?method=getTree', '2', null, 'icon-email', '表格树组件', 'UI_GRIDTREE', '40288a0d41a7978f0141a797af330006', '3', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797af710008', '40288a0d41a7978f0141a797ae670005', null, '2', null, 'icon-sys', '系统管理', '', null, '1', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797af900009', '40288a0d41a7978f0141a797ae670005', 'fileUploadController.do?method=forward', '2', null, 'icon-file', '文件管理', 'SYS_FILE', '40288a0d41a7978f0141a797af710008', '24', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b00d000f', '40288a0d41a7978f0141a797ae670005', 'tsysFlatController.do?method=list', '2', null, 'icon-flats', '子系统定义', 'SYS_FLATINFO', '40288a0d41a7978f0141a797af710008', '21', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b0c9001a', '40288a0d41a7978f0141a797ae670005', null, '2', null, 'icon-sys', '日志管理', '', '40288a0d41a7978f0141a797af710008', '4', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b0e8001b', '40288a0d41a7978f0141a797ae670005', 'tlogDbsqlController.do?method=list', '3', null, 'icon-log', '审计日志', 'LOG_DBSQL', '40288a0d41a7978f0141a797b0c9001a', '42', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b0f8001c', '40288a0d41a7978f0141a797ae670005', null, '1', null, 'icon-sys', '模块管理', '', null, '2', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b107001d', '40288a0d41a7978f0141a797ae670005', 'tsysModuleinfoController.do?method=getTree', '2', null, 'icon-set', '模块定义', 'SYS_MODULE', '40288a0d41a7978f0141a797b0f8001c', '31', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b1460020', '40288a0d41a7978f0141a797ae670005', 'tlogBusinesslogController.do?method=list', '3', null, 'icon-database', '业务日志', 'LOG_BUSINESSLOG', '40288a0d41a7978f0141a797b0c9001a', '41', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b2ec002f', '40288a0d41a7978f0141a797ae670005', 'uiXhEditorDemoController.do?method=getTree', '2', null, 'icon-edit', 'html编辑器组件', 'UI_XHEDITOR', '40288a0d41a7978f0141a797af330006', '5', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b3b70037', '40288a0d41a7978f0141a797ae670005', 'taclRoleController.do?method=list', '3', null, 'icon-role', '角色管理', 'ACL_ROLE', '40288a0d41a7978f0141a797af710008', '14', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b6b4005b', '40288a0d41a7978f0141a797ae670005', 'tsysParameterController.do?method=list', '2', null, 'icon-para', '字典管理', 'SYS_PARAMTEINFO', '40288a0d41a7978f0141a797af710008', '23', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797b9a20078', '40288a0d41a7978f0141a797ae670005', 'taclUserinfoController.do?method=getTree', '3', null, 'icon-users', '用户管理', 'ACL_USER', '40288a0d41a7978f0141a797af710008', '13', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797bba6008d', '40288a0d41a7978f0141a797ae670005', 'tlogLoginlogController.do?method=list', '3', null, 'icon-users', '登录日志', 'LOG_LOGIN', '40288a0d41a7978f0141a797b0c9001a', '44', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797bed3009a', '40288a0d41a7978f0141a797ae670005', 'tsysModuleoperateController.do?method=getTree', '2', null, 'icon-sys', '模块操作', 'SYS_OPERATEINFO', '40288a0d41a7978f0141a797b0f8001c', '32', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797c8e500dc', '40288a0d41a7978f0141a797ae670005', 'tsysOrgController.do?method=list', '3', null, 'icon-org', '机构管理', 'SYS_ORG', '40288a0d41a7978f0141a797af710008', '11', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797cab900ec', '40288a0d41a7978f0141a797ae670005', 'tsysDutyController.do?method=list', '2', null, 'icon-job', '岗位管理', 'SYS_DUTY', '40288a0d41a7978f0141a797af710008', '22', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797cbf200fd', '40288a0d41a7978f0141a797ae670005', 'uiDataGridDemoController.do?method=getTree', '2', null, 'icon-role', '列表组件', 'UI_DATAGRID', '40288a0d41a7978f0141a797af330006', '1', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797d27a0148', '40288a0d41a7978f0141a797ae670005', 'tlogSysexceptionController.do?method=list', '3', null, 'icon-users', '异常日志', 'LOG_SYSEXCEPTION', '40288a0d41a7978f0141a797b0c9001a', '43', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797d355014c', '40288a0d41a7978f0141a797ae670005', 'uiFileUploadDemoController.do?method=getTree', '2', null, 'icon-file', '文件上传组件', 'UI_FILEUPLOAD', '40288a0d41a7978f0141a797af330006', '8', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797da3a0199', '40288a0d41a7978f0141a797ae670005', 'uiPortalDemoController.do?method=getTree', '2', null, 'icon-users', 'portal组件', 'UI_PORTAL', '40288a0d41a7978f0141a797af330006', '4', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797dd8601bc', '40288a0d41a7978f0141a797ae670005', 'uiTreeDemoController.do?method=getTree', '2', null, 'icon-job', '树组件', 'UI_TREE', '40288a0d41a7978f0141a797af330006', '2', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797e2e501fb', '40288a0d41a7978f0141a797ae670005', 'uiAutocompleteDemoController.do?method=getTree', '2', null, 'icon-chart', '自动搜索提示组件', 'UI_AUTOCOMPLETE', '40288a0d41a7978f0141a797af330006', '7', null, null, null);
+INSERT INTO `t_sys_moduleinfo` VALUES ('40288a0d41a7978f0141a797e5660214', '40288a0d41a7978f0141a797ae670005', 'uiDatePickerDemoController.do?method=getTree', '2', null, 'icon-para', '日期组件', 'UI_DATEPICKER', '40288a0d41a7978f0141a797af330006', '6', null, null, null);
+
+-- ----------------------------
+-- Table structure for `t_sys_moduleoperate`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_moduleoperate`;
+CREATE TABLE `t_sys_moduleoperate` (
+  `OPERATEID` varchar(32) NOT NULL,
+  `MODULEID` varchar(32) DEFAULT NULL,
+  `OPERATEONLYCODE` varchar(50) DEFAULT NULL,
+  `OPERATENAME` varchar(50) DEFAULT NULL,
+  `OPERATENO` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`OPERATEID`),
+  KEY `FK9E27083BFEFE904` (`MODULEID`),
+  CONSTRAINT `FK9E27083BFEFE904` FOREIGN KEY (`MODULEID`) REFERENCES `t_sys_moduleinfo` (`MODULEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_moduleoperate
+-- ----------------------------
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b117001e', '40288a0d41a7978f0141a797b107001d', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b1550021', '40288a0d41a7978f0141a797b1460020', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b2300029', '40288a0d41a7978f0141a797af900009', null, '文件上传', 'UPLOAD ');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b3c60038', '40288a0d41a7978f0141a797b3b70037', null, '分配用户', 'AUTHORIZATION');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b405003b', '40288a0d41a7978f0141a797b1460020', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b6180056', '40288a0d41a7978f0141a797b3b70037', null, '取消分配', 'CANCEL');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b6c4005c', '40288a0d41a7978f0141a797b6b4005b', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b7600063', '40288a0d41a7978f0141a797b107001d', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797b9b20079', '40288a0d41a7978f0141a797b9a20078', null, '新增用户', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797bbb6008e', '40288a0d41a7978f0141a797bba6008d', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797c4be00be', '40288a0d41a7978f0141a797bed3009a', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797c4fd00c0', '40288a0d41a7978f0141a797b6b4005b', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797c54b00c5', '40288a0d41a7978f0141a797b6b4005b', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797c8e500dd', '40288a0d41a7978f0141a797c8e500dc', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797c94200e2', '40288a0d41a7978f0141a797b00d000f', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cad900ed', '40288a0d41a7978f0141a797cab900ec', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cc1100ff', '40288a0d41a7978f0141a797cab900ec', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cc6f0104', '40288a0d41a7978f0141a797bed3009a', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cd1b010d', '40288a0d41a7978f0141a797b3b70037', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cd2a010e', '40288a0d41a7978f0141a797b9a20078', null, '分配角色', 'DEFROLE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cd690110', '40288a0d41a7978f0141a797b9a20078', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797ce240113', '40288a0d41a7978f0141a797b9a20078', null, '修改用户', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797ce440115', '40288a0d41a7978f0141a797b9a20078', null, '删除用户', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cef0011e', '40288a0d41a7978f0141a797b107001d', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cf0f0120', '40288a0d41a7978f0141a797b107001d', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cf8c0127', '40288a0d41a7978f0141a797b00d000f', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cfda012b', '40288a0d41a7978f0141a797bed3009a', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797cff9012d', '40288a0d41a7978f0141a797bed3009a', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d0a50137', '40288a0d41a7978f0141a797b3b70037', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d0f3013b', '40288a0d41a7978f0141a797b00d000f', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d122013e', '40288a0d41a7978f0141a797b3b70037', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d22c0146', '40288a0d41a7978f0141a797b3b70037', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d2b80149', '40288a0d41a7978f0141a797d27a0148', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d2f7014a', '40288a0d41a7978f0141a797c8e500dc', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d45e0151', '40288a0d41a7978f0141a797b6b4005b', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d4bc0155', '40288a0d41a7978f0141a797c8e500dc', null, '新增', 'ADD');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d4eb0158', '40288a0d41a7978f0141a797cab900ec', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d51a015b', '40288a0d41a7978f0141a797cab900ec', null, '修改', 'EDIT');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d6620168', '40288a0d41a7978f0141a797cab900ec', null, '取消分配用户', 'CANCEL');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d7e8017d', '40288a0d41a7978f0141a797bba6008d', null, '查询', 'QUERY');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d902018d', '40288a0d41a7978f0141a797d27a0148', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797d902018e', '40288a0d41a7978f0141a797b9a20078', null, '分配特权', 'PRIVILEGE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797dd9601bd', '40288a0d41a7978f0141a797b9a20078', null, '收回权限', 'RESET');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797de4101c6', '40288a0d41a7978f0141a797cab900ec', null, '分配用户', 'ALLOCATION');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797e1db01f2', '40288a0d41a7978f0141a797b0e8001b', null, '删除', 'DELETE');
+INSERT INTO `t_sys_moduleoperate` VALUES ('40288a0d41a7978f0141a797e3fe0202', '40288a0d41a7978f0141a797b0e8001b', null, '查询', 'QUERY');
+
+-- ----------------------------
+-- Table structure for `t_sys_org`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_org`;
+CREATE TABLE `t_sys_org` (
+  `ORGID` varchar(32) NOT NULL,
+  `ORGNO` varchar(12) DEFAULT NULL,
+  `ORGNAME` varchar(30) DEFAULT NULL,
+  `PARENTORGID` varchar(32) DEFAULT NULL,
+  `ADDR` varchar(100) DEFAULT NULL,
+  `WEBSITE` varchar(40) DEFAULT NULL,
+  `TELEPHONE` varchar(20) DEFAULT NULL,
+  `FAX` varchar(20) DEFAULT NULL,
+  `ORGTYPE` varchar(2) DEFAULT NULL,
+  `E_MAIL` varchar(30) DEFAULT NULL,
+  `ORGDESC` varchar(60) DEFAULT NULL,
+  `ORGSTATE` varchar(6) DEFAULT NULL,
+  `ORG_CLASS` varchar(2) DEFAULT NULL,
+  `ORG_SHORTNAME` varchar(20) DEFAULT NULL,
+  `ORG_KIND` varchar(2) DEFAULT NULL,
+  `CORP_MAN` varchar(30) DEFAULT NULL,
+  `MOBILE` varchar(15) DEFAULT NULL,
+  `ORG_SORT` varchar(1) DEFAULT NULL,
+  `ORG_REGION` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`ORGID`),
+  KEY `FKF64699478DDDA176` (`PARENTORGID`),
+  CONSTRAINT `FKF64699478DDDA176` FOREIGN KEY (`PARENTORGID`) REFERENCES `t_sys_org` (`ORGID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_org
+-- ----------------------------
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b2fb0030', '001', '手拉手技术分享联盟', null, null, null, null, null, 'zs', null, '本系统根单位信息', '01', '1', '手拉手技术分享联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b443003f', '001007', '中南技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '中南技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4530040', '001008', '华南技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '华南技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4720041', '001005', '东北技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '东北技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4a10044', '001006', '华东技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '华东技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4b10045', '001003', '西北技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '西北技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4e00047', '001004', '西南技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '西南技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b4ef0048', '001001', '华东技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '华东技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797b50f0049', '001002', '华北技术联盟', '40288a0d41a7978f0141a797b2fb0030', null, null, null, null, 'zs', null, '八大技术联盟之一', '01', '2', '华北技术联盟', null, null, null, '1', null);
+INSERT INTO `t_sys_org` VALUES ('40288a0d41a7978f0141a797cb6500f5', '001007001', '长沙技术群', '40288a0d41a7978f0141a797b443003f', null, null, null, null, 'zs', null, '技术联盟下的分公司', '01', '3', '长沙技术群', null, null, null, '1', null);
+
+-- ----------------------------
+-- Table structure for `t_sys_parameter`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_parameter`;
+CREATE TABLE `t_sys_parameter` (
+  `PARAID` varchar(32) NOT NULL,
+  `ISDEFAULT` varchar(2) DEFAULT NULL,
+  `PARANAME` varchar(20) DEFAULT NULL,
+  `PARANO` varchar(100) DEFAULT NULL,
+  `PARA_CLASS` varchar(2) DEFAULT NULL,
+  `PARA_KEY` varchar(60) DEFAULT NULL,
+  `PARA_TYPE` varchar(20) DEFAULT NULL,
+  `PARA_ORDER` bigint(20) DEFAULT NULL,
+  `REMARK` varchar(100) DEFAULT NULL,
+  `DISPLAYSORT` varchar(2) DEFAULT NULL,
+  `PARENTPARAID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`PARAID`),
+  KEY `FK5687FBCC10F56A0B` (`PARENTPARAID`),
+  CONSTRAINT `FK5687FBCC10F56A0B` FOREIGN KEY (`PARENTPARAID`) REFERENCES `t_sys_parameter` (`PARAID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_parameter
+-- ----------------------------
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797b01d0010', '1', '用户头像上传路径', 'E:\\\\images\\\\userinfo', '0', '/images/userinfo', 'userImagePath', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797b07b0015', '1', '用户在线状态', '1', '0', '在线', 'isonline', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797b08a0016', '1', '用户在线状态', '2', '0', '不在线', 'isonline', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797b84b0069', '1', '参数是否默认', '2', '0', '默认', 'isdefault', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797b85a006a', '2', '参数是否默认', '1', '0', '非默认', 'isdefault', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797bafa0083', '2', '参数级别', '2', '0', '用户级', 'paraClass', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797bb190085', '1', '参数级别', '1', '0', '系统级', 'paraClass', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797c4fd00c1', '1', '性别', '2', '0', '女', 'sex', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797c52c00c3', '1', '性别', '1', '0', '男', 'sex', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797c82900d3', '', '角色类型', '2', '0', '私有', 'rolesort', '2', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797c8a600d9', '', '角色类型', '1', '0', '公共', 'rolesort', '1', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797cc400101', '', '是否为开发管理员', 'devadmin', '0', 'devadmin', 'SUPER_USER', '1', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797cea1011a', '1', '岗位级别', '1', '0', '公共岗位', 'DUTYSORT', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797ced0011c', '1', '岗位级别', '3', '0', '技术联盟级别', 'DUTYSORT', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797cee0011d', '1', '岗位级别', '2', '0', '集团级别', 'DUTYSORT', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d0280130', '1', '页数', '20', '0', '20', 'initPageSize', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d0470132', '2', '页数', '10', '0', '10', 'initPageSize', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d6ee016f', '1', '单位类型', '1', '0', '单位', 'ORG_SORT', '1', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d7c9017b', '1', '是否有子结点', '1', '0', '有子结点', 'isLeaf', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d7d9017c', '1', '是否有子结点', '2', '0', '无子结点', 'isLeaf', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d8270181', '', '用户状态', '4', '0', '离职', 'userState', '4', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d8370182', '', '用户状态', '3', '0', '调岗', 'userState', '3', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d8460183', '', '用户状态', '2', '0', '停用', 'userState', '2', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d8560184', '1', '用户状态', '1', '0', '正常', 'userState', '1', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797d8a40188', '', '角色级别', '2', '0', '群级别', 'roleType', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797da69019b', '', '角色级别', '1', '0', '技术联盟级别', 'roleType', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797de2201c4', '', '单位类型', '2', '0', '部门', 'ORG_SORT', '2', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797df0d01d1', '1', '单位类型', 'zs', '0', '直属单位', 'RUN_MODE', '1', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797df5b01d6', '1', '单位类型', 'hz', '0', '合作单位', 'RUN_MODE', '2', null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797dfb801db', '1', '模块图标路径', 'e:\\\\images\\\\module', '0', '/images/module', 'moduleImagePath', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e6ae0222', '1', '用户类型', '2', '0', '正式员工', 'userType', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e6dd0224', '1', '用户类型', '1', '0', '临时员工', 'userType', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e72b0229', '1', '岗位类型', '4', '0', '总监', 'dutytype', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e7a8022b', '1', '岗位类型', '3', '0', '副总经理', 'dutytype', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e7c7022c', '1', '岗位类型', '2', '0', '总经理', 'dutytype', null, null, null, null);
+INSERT INTO `t_sys_parameter` VALUES ('40288a0d41a7978f0141a797e7d7022d', '1', '岗位类型', '1', '0', '主席', 'dutytype', null, null, null, null);
+
+-- ----------------------------
+-- Table structure for `t_sys_treeprivilege`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_treeprivilege`;
+CREATE TABLE `t_sys_treeprivilege` (
+  `TREEID` varchar(32) NOT NULL,
+  `ORGID` varchar(32) DEFAULT NULL,
+  `USERID` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`TREEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_treeprivilege
+-- ----------------------------
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c07800a1', '40288a0d41a7978f0141a797b50f0049', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c0a700a2', '40288a0d41a7978f0141a797b4ef0048', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c0c700a3', '40288a0d41a7978f0141a797b4e00047', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c0f500a4', '40288a0d41a7978f0141a797b4b10045', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c12400a6', '40288a0d41a7978f0141a797b4a10044', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c15300a9', '40288a0d41a7978f0141a797b4720041', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c17200ab', '40288a0d41a7978f0141a797b4530040', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c19200ac', '40288a0d41a7978f0141a797b443003f', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797c1d000ae', '40288a0d41a7978f0141a797b2fb0030', '40288a0d41a7978f0141a797c04a00a0');
+INSERT INTO `t_sys_treeprivilege` VALUES ('40288a0d41a7978f0141a797cb7500f6', '40288a0d41a7978f0141a797cb6500f5', '40288a0d41a7978f0141a797c04a00a0');
+
+-- ----------------------------
+-- Table structure for `t_sys_upload`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_upload`;
+CREATE TABLE `t_sys_upload` (
+  `UPLOADID` varchar(32) NOT NULL,
+  `CREATE_MAN` varchar(32) DEFAULT NULL,
+  `CREATE_TIME` varchar(20) DEFAULT NULL,
+  `FILE_URL` varchar(200) DEFAULT NULL,
+  `FILE_NAME` varchar(200) DEFAULT NULL,
+  `FLATID` varchar(32) DEFAULT NULL,
+  `REMARK` varchar(200) DEFAULT NULL,
+  `SECOND_NAME` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`UPLOADID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_upload
+-- ----------------------------
